@@ -23,7 +23,7 @@ class Uart(object):
         while True:
             try:
                 data = self.uart.readline()
-                data = "[uart==>pc] " + data.decode()
+                data = data.decode()
                 print(data)
                 sleep(0.05)
             except Exception as e:
@@ -39,6 +39,8 @@ class Uart(object):
 
     def uart_send_data(self, data):
         print("pc==>uart: ", data)
+        # 加回车换行
+        data = data + "\n"
         self.uart.write(data.encode(encoding="ascii"))
 
 
