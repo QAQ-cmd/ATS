@@ -5,8 +5,8 @@
 4.可以根据大频口判断终端是否进入了休眠
 """
 import serial.tools.list_ports
-
-com_flag_path = '..\\UUT\\temp\\COM.txt'
+# 运行的位置不同相对路径不同
+com_flag_path = 'UUT\\temp\\COM.txt'
 
 
 def find_serial():
