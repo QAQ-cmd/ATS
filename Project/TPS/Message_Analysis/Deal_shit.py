@@ -7,13 +7,15 @@ import json
 a = Deal_xml_message_structure_test002.xml_cfg()
 b = inout_shit.Uart("COM115")
 
-def w_log (whayrt):
+
+def w_log(whayrt):
     # 把打印的东西存起来
-    with open('1234.txt','a',encoding='utf8') as df:
+    with open('1234.txt', 'a', encoding='utf8') as df:
         rtyu = str(whayrt) + '\n'
         df.write(rtyu)
 
-def fin_until (untilw,untilt):
+
+def fin_until(untilw, untilt):
     # 把命令单元在xml里面的位置和单元体输入，输出单元的截取字典
     # 查看报文中的命令单元是什么
     untilwk = untilw['命令单元']
@@ -42,7 +44,7 @@ def fin_until (untilw,untilt):
         wsdt1.append(untilt[h1:i])
         h1 = i
     fgh = dict(zip(untilw1, wsdt1))
-    return  fgh
+    return fgh
 
 
 def Overall():
@@ -64,7 +66,7 @@ def Overall():
     print(allv1)
     while True:
         # 日志时间
-        ert23 = time.strftime('当前时间：'+'%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        ert23 = time.strftime('当前时间：' + '%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         # 开启串口线程
         # b.run()
         # 接受报文数据
@@ -86,7 +88,7 @@ def Overall():
         time.sleep(0.01)
         mingling_until = r[var:]
         # print(mingling_until)
-        edc = fin_until(fgh,mingling_until)
+        edc = fin_until(fgh, mingling_until)
         print(json.dumps(edc, indent=4, ensure_ascii=False))
         w_log(edc)
 
@@ -94,33 +96,3 @@ def Overall():
 if __name__ == "__main__":
     threading.Thread(target=Overall(), daemon=True).start()
     threading.Thread.join()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
