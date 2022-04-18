@@ -1,10 +1,17 @@
 """
-1.判断串口在不在                       √
+1.判断串口在不在                        √
 2.返回值,写入临时文件                   √
 3.如有多个选择串口，则选择串口            √
 4.可以根据大频口判断终端是否进入了休眠，以及流水号命令查询IOT+S1+G17691.F1.PI.LOG.S=?是否进入休眠
+5.导入日志脚本，引入日志                 √
 """
 import serial.tools.list_ports
+import sys
+sys.path.append('monitor')
+import monitor.college_log as c_log
+
+
+
 # 运行的位置不同相对路径不同
 com_flag_path = 'UUT\\temp\\COM.txt'
 
@@ -13,17 +20,17 @@ def find_serial():
     port_list = list(serial.tools.list_ports.comports())
     port_list_name = []
     if len(port_list) <= 0:
-        print("没有找到任何设备！")
+        c_log.collect_log_mf("没有找到任何设备！")
     else:
         for each_port in port_list:
             tpe01 = str(each_port)
             if 'Serial' in tpe01:
-                print(each_port)
+                c_log.collect_log_mf(each_port)
                 # each_port[0]很奇怪
                 port_list_name.append(each_port[0])
 
     if len(port_list_name) == 0:
-        print("没有找到串口")
+        c_log.collect_log_mf("没有找到串口")
         return 0
     '''
     else:
