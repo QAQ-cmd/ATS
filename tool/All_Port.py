@@ -6,31 +6,27 @@
 5.导入日志脚本，引入日志                 √
 """
 import serial.tools.list_ports
-import sys
-sys.path.append('monitor')
 import monitor.college_log as c_log
 
-
-
 # 运行的位置不同相对路径不同
-com_flag_path = 'UUT\\temp\\COM.txt'
+com_flag_path = '..\\UUT\\temp\\COM.txt'
 
 
 def find_serial():
     port_list = list(serial.tools.list_ports.comports())
     port_list_name = []
     if len(port_list) <= 0:
-        c_log.collect_log_mf("没有找到任何设备！")
+        print("没有找到任何设备！")
     else:
         for each_port in port_list:
             tpe01 = str(each_port)
             if 'Serial' in tpe01:
-                c_log.collect_log_mf(each_port)
+                print(each_port)
                 # each_port[0]很奇怪
                 port_list_name.append(each_port[0])
 
     if len(port_list_name) == 0:
-        c_log.collect_log_mf("没有找到串口")
+        print("没有找到串口")
         return 0
     '''
     else:
