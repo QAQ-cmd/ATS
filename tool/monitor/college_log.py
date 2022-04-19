@@ -1,11 +1,9 @@
 # 本文件夹的主运行py文件
 # 监控脚本的运行
 import time
-import a_112223
 
 from file_path import log_dir, temp_dir
 
-a_112223.sed34()
 
 now_time_exact = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 # log路径
@@ -16,6 +14,7 @@ temp_path = temp_dir() + '\\COM.txt'
 
 def collect_log_mf(log):
     print(log)
+    str(log)
     with open(log_path, 'a', encoding='utf8') as temp:
         temp.write(now_time_exact + '\n')
         temp.write(log + '\n')
