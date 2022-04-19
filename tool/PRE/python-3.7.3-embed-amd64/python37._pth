@@ -1,5 +1,5 @@
 python37.zip
 .
-
+../../monitor
 # Uncomment to run site.main() automatically
 import site
