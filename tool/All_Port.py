@@ -37,6 +37,8 @@ def find_serial():
 
 def set_serial_flag():
     a = find_serial()
+    if a == 0:
+        print("检查USB是否接好，因为即使串口9针的另一端没有接t-box在PC机也是可以识别的")
     if len(a) != 0:
         i = input("从上面选择串口（按上下顺序输入序号即可）：")
         i = int(i) - 1
@@ -50,8 +52,7 @@ def set_serial_flag():
         except IndexError as out_range:
             print("错误：超出范围了，请重新输入")
             set_serial_flag()
-    if a == 0:
-        print("检查USB是否接好，因为即使串口9针的另一端没有接t-box在PC机也是可以识别的")
+
 
 
 if __name__ == '__main__':
