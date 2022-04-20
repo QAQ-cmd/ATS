@@ -44,7 +44,7 @@ def set_serial_flag():
             print("错误：超出范围了，请重新输入")
             set_serial_flag()
         try:
-            print("你选择了", a[i], "端口，正写入临时文件中...")
+            c_log.collect_log_mf("你选择了", a[i], "端口，正写入临时文件中...")
             with open(com_flag_path, 'w', encoding='utf8') as temp:
                 temp.write(a[i])
         except IndexError as out_range:
@@ -57,4 +57,4 @@ def set_serial_flag():
 if __name__ == '__main__':
     print("开始配置串口")
     set_serial_flag()
-    print("配置串口成功")
+    c_log.collect_log_mf("配置串口成功")
