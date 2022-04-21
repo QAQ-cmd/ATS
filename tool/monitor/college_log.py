@@ -7,9 +7,9 @@ from file_path import log_dir, temp_dir
 
 now_time_exact = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 # log路径
-log_path = log_dir() + '\\run_log.txt'
+log_path = log_dir() + 'run_log.txt'
 # temp路径
-temp_path = temp_dir() + '\\COM.txt'
+temp_path = temp_dir() + 'COM.txt'
 
 
 def collect_log_mf(*log):
