@@ -7,9 +7,10 @@
 """
 import serial.tools.list_ports
 import monitor.college_log as c_log
+import monitor.file_path as f_path
 
 # 运行的位置不同相对路径不同
-com_flag_path = '..\\UUT\\temp\\COM.txt'
+com_flag_path = f_path.temp_dir() + 'COM.txt'
 
 
 def find_serial():
@@ -52,7 +53,6 @@ def set_serial_flag():
         except IndexError as out_range:
             print("错误：超出范围了，请重新输入")
             set_serial_flag()
-
 
 
 if __name__ == '__main__':

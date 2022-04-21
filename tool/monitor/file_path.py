@@ -34,7 +34,7 @@ def tool_dir():
 
 def temp_dir():
     # 运行时产生的temp文件
-    temp_path = find_ATS_file() + 'UUT\\temp'
+    temp_path = find_ATS_file() + 'UUT\\temp\\'
     if os.path.exists(temp_path):
         pass
     else:
@@ -45,7 +45,7 @@ def temp_dir():
 
 def log_dir():
     # 运行时产生的日志文件
-    log_dir_mf = find_ATS_file() + 'UUT\\log'
+    log_dir_mf = find_ATS_file() + 'UUT\\log\\'
     if os.path.exists(log_dir_mf):
         pass
     else:

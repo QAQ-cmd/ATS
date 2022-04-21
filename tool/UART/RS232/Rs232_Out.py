@@ -1,9 +1,21 @@
 # encoding=utf-8
 import serial
 import threading
-import datetime
-import queue
 from time import sleep
+import file_path
+
+
+def Get_Port():
+    """
+    从temp文件中获取COM Port
+    """
+    com_path = file_path.temp_dir() + "COM.txt"
+    try:
+        with open(com_path, 'r', encoding='utf8') as temp:
+            com = temp.readline()
+            print(com)
+    except:
+        print("错误！")
 
 
 class Uart(object):
@@ -45,15 +57,16 @@ class Uart(object):
 
 
 if __name__ == "__main__":
-    uart = Uart("COM115")
-    if -1 != uart.err:
-        uart.run()
-    while True:
-        input_data = input("Please input:\r\n")
-        if "quit" == input_data:
-            uart.close()
-            break
-        else:
-            uart.uart_send_data(input_data + "\n")
-        sleep(0.1)
-    print("exit uart")
+    # uart = Uart("COM115")
+    # if -1 != uart.err:
+    #     uart.run()
+    # while True:
+    #     input_data = input("Please input:\r\n")
+    #     if "quit" == input_data:
+    #         uart.close()
+    #         break
+    #     else:
+    #         uart.uart_send_data(input_data + "\n")
+    #     sleep(0.1)
+    # print("exit uart")
+    Get_Port()
