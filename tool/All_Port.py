@@ -40,14 +40,16 @@ def set_serial_flag():
     a = find_serial()
     if a == 0:
         print("检查USB是否接好，因为即使串口9针的另一端没有接t-box在PC机也是可以识别的")
+        return 0
     if len(a) != 0:
-        i = input("从上面选择串口（按上下顺序输入序号即可）：")
+        print("从上面选择串口(按上下顺序输入序号即可):")
+        i = input(">")
         i = int(i) - 1
         if i < 0:
             print("错误：超出范围了，请重新输入")
             set_serial_flag()
         try:
-            c_log.collect_log_mf("你选择了", a[i], "端口，正写入临时文件中...")
+            c_log.collect_log_mf("选择端口:", a[i])
             with open(com_flag_path, 'w', encoding='utf8') as temp:
                 temp.write(a[i])
         except IndexError as out_range:
