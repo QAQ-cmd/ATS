@@ -8,6 +8,7 @@
 import serial.tools.list_ports
 import monitor.college_log as c_log
 import monitor.file_path as f_path
+import time
 
 # 运行的位置不同相对路径不同
 com_flag_path = f_path.temp_dir() + 'COM.txt'
@@ -39,8 +40,9 @@ def find_serial():
 def set_serial_flag():
     a = find_serial()
     if a == 0:
-        print("检查USB是否接好，因为即使串口9针的另一端没有接t-box在PC机也是可以识别的")
-        return 0
+        print("检查USB是否接好")
+        time.sleep(8)
+        set_serial_flag()
     if len(a) != 0:
         print("从上面选择串口(按上下顺序输入序号即可):")
         i = input(">")
