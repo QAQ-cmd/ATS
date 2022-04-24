@@ -19,7 +19,7 @@ def first_click_me():
     """
     college_log.clean_log()
     college_log.collect_log_mf("初始化完成")
-    college_log.collect_log_mf("开始配置串口")
+    college_log.collect_log_mf("配置串口:")
     All_Port.set_serial_flag()
     college_log.collect_log_mf("配置串口成功")
     display_one()
@@ -35,9 +35,26 @@ def display_one():
     function_one = input(">")
     function_one = int(function_one)
     if function_one in range(7):
-        college_log.collect_log_mf("选择功能:"+str(function_one))
+        college_log.collect_log_mf("选择功能:" + str(function_one))
+        switch_one(function_one)()
+        return display_one()
     else:
         college_log.collect_log_mf("错误,超出范围")
+
+
+def switch_one(num):
+    # 模拟Switch语句
+    switch = {
+        # 1: All_Port.set_serial_flag(),
+        1: lambda: print("获取基本信息"),
+        2: lambda: All_Port.set_serial_flag(),
+        3: lambda: print("test"),
+        4: lambda: print("报文解析"),
+        5: lambda: print("底包升级"),
+        6: lambda: print("退出")
+    }
+    temp_switch = switch[num]
+    return temp_switch
 
 
 if __name__ == '__main__':
