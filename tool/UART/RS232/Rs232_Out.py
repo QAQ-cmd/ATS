@@ -24,11 +24,12 @@ class Uart(object):
     """
     实例化RS232的串口
     """
-    def __init__(self, port):
+
+    def __init__(self, port_01):
         self.err = 0
         self.run_status = 0
         try:
-            self.uart = serial.Serial(port, 115200)
+            self.uart = serial.Serial(port_01, 115200)
             self.run_status = 1
             college_log.collect_log_mf("连接成功!")
         except:
@@ -37,22 +38,24 @@ class Uart(object):
             self.err = -1
 
     def uart_recv_thread(self):
-        print("start uart_recv_thread")
-        while True:
-            try:
-                data = self.uart.readline()
-                data = data.decode()
-                print(data)
-                sleep(0.05)
-            except Exception as e:
-                print("Error")
-                print(e)
+        try:
+            # while True:
+            data = self.uart.readline()
+            # data = data.decode()
+            print(data)
+            sleep(0.5)
+            return data
+        except Exception as e:
+            print("串口没有接收")
+            print(e)
 
     def run(self):
-        threading.Thread(target=self.uart_recv_thread, daemon=True).start()
+        while True:
+            self.uart_recv_thread()
+        # threading.Thread(target=self.run, daemon=True).start()
 
     def close(self):
-        print("close uart")
+        print("关闭串口")
         self.uart.close()
 
     def uart_send_data(self, data):
@@ -69,7 +72,7 @@ if __name__ == "__main__":
         uart.run()
         while True:
             input_data = input("Please input:\r\n")
-            if "quit" == input_data:
+            if "q" == input_data:
                 uart.close()
                 break
             else:
@@ -77,4 +80,3 @@ if __name__ == "__main__":
             sleep(0.1)
     else:
         print("退出!")
-

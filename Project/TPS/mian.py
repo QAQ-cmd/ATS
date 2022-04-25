@@ -36,6 +36,7 @@ def display_one():
     function_one = int(function_one)
     if function_one in range(7):
         college_log.collect_log_mf("选择功能:" + str(function_one))
+        # 后面的括号才是精髓
         switch_one(function_one)()
         return display_one()
     else:
@@ -45,7 +46,6 @@ def display_one():
 def switch_one(num):
     # 模拟Switch语句
     switch = {
-        # 1: All_Port.set_serial_flag(),
         1: lambda: print("获取基本信息"),
         2: lambda: All_Port.set_serial_flag(),
         3: lambda: print("test"),

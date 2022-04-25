@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/tool/monitor" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tool/UART" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tool/UART/RS232" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tool/PRE/python-3.7.3-embed-amd64" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tool/PRE/python-3.7.3-embed-amd64/Lib/site-packages" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (ATS)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
