@@ -16,26 +16,26 @@ def Deal_raw_data():
     # 第三个剩余长度的位置
     head_mes_03 = int(raw[6:8], 16)
     if head_mes_01 < 128:
-        print("报文长度:", raw[-2*head_mes_01:])
+        print("报文长度1:",head_mes_01)
         return raw[4:]
     elif head_mes_02 < 128:
         # 此处128为校验位
         head_mes_02_l = head_mes_01 - 128
-        head_mes_02_l = head_mes_02_l + int(raw[4:6], 16) + 127
-        print("报文长度:", head_mes_02_l)
+        head_mes_02_l = head_mes_02_l + int(raw[4:6], 16)*128
+        print("报文长度2:", head_mes_02_l)
         # print(raw[-2*head_mes_02_l:])
         return raw[-2*head_mes_02_l:]
     elif head_mes_03 < 128:
         # 此处128为校验位
         head_mes_03_l = head_mes_02 - 128
-        head_mes_03_l = head_mes_03_l + int(raw[6:8], 16) + 16383
-        # print("报文长度:", head_mes_03_l)
+        head_mes_03_l = head_mes_03_l + int(raw[6:8], 16)*128
+        print("报文长度3:", head_mes_03_l)
         return raw[-2*head_mes_03_l:]
     else:
         # 此处128为校验位
         head_mes_04_l = head_mes_03 - 128
-        head_mes_04_l = head_mes_04_l + int(raw[8:10], 16) + 2097151
-        # print("报文长度:", head_mes_04_l)
+        head_mes_04_l = head_mes_04_l + int(raw[8:10], 16)*128
+        print("报文长度4:", head_mes_04_l)
         return raw[-2*head_mes_04_l:]
 
 
@@ -44,21 +44,27 @@ def Topic_Name():
     # print(b)
     c = int(b[2:4], 16)
     topic_name_all = b[4:2*c+4]
-    print("主题:", topic_name_all)
-    print("解析:", ascii_conv(topic_name_all))
+    # print("主题:", topic_name_all)
+    print("主题解析:", ascii_conv(topic_name_all))
     flag = judge_Qos()
     if flag == 1:
         mes = b[2*c+4:]
-        print("负荷:", mes)
+        # print("负荷:", mes)
         try:
             mes = ascii_conv(mes)
             mes = str(mes)
-            print("解析:", mes)
+            print("负荷解析:", mes)
         except:
             print("不是JSON格式或解析错误")
     else:
-        print("负荷:", b[2*c+4:])
-
+        dfg = b[2*c+4:]
+        # print("负荷:", b[2*c+4:])
+        try:
+            mes = ascii_conv(dfg)
+            mes = str(dfg)
+            print("负荷解析2:", dfg)
+        except:
+            print("不是JSON格式或解析错误")
 
 def judge_Qos():
     # 判断报文带不带报文标识符
