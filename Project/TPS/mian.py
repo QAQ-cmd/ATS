@@ -36,8 +36,7 @@ def display_one():
     function_one = int(function_one)
     if function_one in range(7):
         college_log.collect_log_mf("选择功能:" + str(function_one))
-        # 后面的括号才是精髓
-        switch_one(function_one)()
+        switch_one(function_one)()        # 后面的括号才是精髓
         return display_one()
     else:
         college_log.collect_log_mf("错误,超出范围")
