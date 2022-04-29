@@ -10,7 +10,7 @@ UUT 测试过程中生成的日志和temp文件
         3.第二层的选项
 """
 import college_log
-import All_Port
+import tool.All_Port as All_Port
 
 
 def first_click_me():
