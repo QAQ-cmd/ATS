@@ -2,6 +2,6 @@ python37.zip
 .
 ../../monitor
 ../../UART/RS232
-../
+../../
 # Uncomment to run site.main() automatically
 import site
